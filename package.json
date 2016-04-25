@@ -7,7 +7,13 @@
 	},
 	"dependencies": {
 		"express": "4.13.x",
-		"cfenv": "1.0.x"
+		"cfenv": "1.0.x",
+		"body-parser":"1.5.2",
+		"ibmiotf":"~0.2.11",
+		"jquery": "^2.1.4",
+        "angular": "~1.3",
+        "angular-route": "*",
+        "materialize-css": "*"
 	},
 	"repository": {},
 	"engines": {
