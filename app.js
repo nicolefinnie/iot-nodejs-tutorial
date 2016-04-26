@@ -38,8 +38,8 @@ app.use('/scripts', express.static(__dirname + '/node_modules/'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-// this iot service config 
-var iotConfig;
+// this iot service credentials 
+var iotCredentials;
 
 /**
  * @attention 
@@ -47,7 +47,7 @@ var iotConfig;
  */
 var iotPlatformServiceName = 'iot-raspberrypi';
 
-//Loop through VCAP_SERVICES defined in Bluemix and retrieve the credential from the IoT service
+//Loop through configuration internally defined in Bluemix and retrieve the credential from the IoT service
 var baseConfig = appEnv.getServices(iotPlatformServiceName);
 
 /**
@@ -58,24 +58,24 @@ if (!baseConfig || Object.keys(baseConfig).length === 0) {
   var configJSON = require('./vcap_service.json');
   configJSON["iotf-service"].forEach(function(entry) {
     if (entry.name === iotPlatformServiceName) {
-      iotConfig = entry;
+      iotCredentials = entry;
     }
   })  
 } 
 /**VCAP_SERVICES stored in Bluemix, its JSON format is different than VCAP_SERVICES. 
 */
 else {
-  iotConfig = baseConfig['iot-raspberrypi'];
+  iotCredentials = baseConfig[iotPlatformServiceName];
 }
 
-console.log('iot config is ' + JSON.stringify(iotConfig));
+console.log('iot config is ' + JSON.stringify(iotCredentials));
 
 var iotAppConfig = {
-    "org" : iotConfig.credentials.org,
-    "id" : iotConfig.credentials.iotCredentialsIdentifier,
+    "org" : iotCredentials.credentials.org,
+    "id" : iotCredentials.credentials.iotCredentialsIdentifier,
     "auth-method" : "apikey",
-    "auth-key" : iotConfig.credentials.apiKey,
-    "auth-token" : iotConfig.credentials.apiToken
+    "auth-key" : iotCredentials.credentials.apiKey,
+    "auth-token" : iotCredentials.credentials.apiToken
 }
 
 var appClient = new Client(iotAppConfig);
@@ -93,6 +93,7 @@ appClient.on("connect", function () {
 var otherSensor = {"payload":{}};
 var myHouse = {"motionPayload":{}};
 
+// deviceType "raspberrypi" and eventType "motionSensor" are published by client.py on RaspberryPi
 appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, payload){
   if (eventType === 'motionSensor'){
     myHouse.motionPayload = JSON.parse(payload);
