@@ -16,7 +16,7 @@ function ($scope, $rootScope, $http, $interval) {
     }).then(function successCallback(response) {
    
       if (response.data.motionPayload !== undefined) {
-        // switch on motion detected
+        // switch on when motion is detected
         if(Object.keys(response.data.motionPayload).length > 0){
           var payload = JSON.parse(response.data.motionPayload);
             $('#switch').prop('checked', payload.motionDetected);   

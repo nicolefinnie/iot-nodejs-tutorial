@@ -91,19 +91,19 @@ appClient.on("connect", function () {
 
 // get device events, we need to initialize this JSON doc with an attribute because it's called by reference
 var otherSensor = {"payload":{}};
-var myHouse = {"motionPayload":{}};
+var motionSensorData = {"motionPayload":{}};
 
 // deviceType "raspberrypi" and eventType "motionSensor" are published by client.py on RaspberryPi
 appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, payload){
   if (eventType === 'motionSensor'){
-    myHouse.motionPayload = JSON.parse(payload);
+    motionSensorData.motionPayload = JSON.parse(payload);
   }
   else {
     console.log('Got other events of ' + eventType + ' from ' + deviceId + ':' + JSON.stringify(payload));
   } 
 });
 
-app.get('/sensordata', raspberryPiServer.returnCurrentSensorData(myHouse));
+app.get('/sensordata', raspberryPiServer.returnCurrentSensorData(motionSensorData));
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
