@@ -39,7 +39,7 @@ app.use('/scripts', express.static(__dirname + '/node_modules/'));
 var appEnv = cfenv.getAppEnv();
 
 // this iot service config 
-var iotConfig
+var iotConfig;
 
 /**
  * @attention 
