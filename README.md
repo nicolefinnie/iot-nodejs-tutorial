@@ -1,17 +1,15 @@
-This README.md file is displayed on your project page. You should edit this 
-file to describe your project, including instructions for building and 
-running the project, pointers to the license under which you are making the 
-project available, and anything else you think would be useful for others to
-know.
+If you're like me and don't want to maintain a web server yourself but would 
+rather receive your sensor data from Raspberry Pis and control your sensors 
+via the Internet, a Cloud service might come onto your mind. This is an example 
+of hooking up a PIR motion sensor on a Raspberry Pi with IBM IoT platform on 
+Bluemix. 
 
-We have created an empty license.txt file for you. Well, actually, it says,
-"<Replace this text with the license you've chosen for your project.>" We 
-recommend you edit this and include text for license terms under which you're
-making your code available. A good resource for open source licenses is the 
-[Open Source Initiative](http://opensource.org/).
+This basic tutorial is composed of two parts: 
+1) device scripts in python: reads data from a motion sensor on Raspberry Pi 
+and publishes motion events to IBM IoT platform.
 
-Be sure to update your project's profile with a short description and 
-eye-catching graphic.
+2) Web Application in Node.JS, Express.JS, and Angular.JS: subscribes to 
+Raspberry Pi for motion sensor data, implements REST APIs and renders the sensor 
+data in the view. 
 
-Finally, consider defining some sprints and work items in Track & Plan to give 
-interested developers a sense of your cadence and upcoming enhancements.
+[Build an IoT Bluemix app in Node.js with sensors on Raspberry Pi](https://developer.ibm.com/recipes/)
