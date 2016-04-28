@@ -13,4 +13,6 @@ and publishes motion events to IBM IoT platform.
 Raspberry Pi for motion sensor data, implements REST APIs and renders the sensor 
 data in the view. 
 
-[Build an IoT Bluemix app in Node.js with sensors on Raspberry Pi](https://developer.ibm.com/recipes/)
+For more details, check out the recipe below:
+
+[Build an IoT Bluemix app in Node.js with sensors on Raspberry Pi](https://developer.ibm.com/recipes/tutorials/build-an-iot-bluemix-app-in-node-js-with-sensors-on-raspberry-pi/)
