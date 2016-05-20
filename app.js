@@ -72,7 +72,8 @@ console.log('iot config is ' + JSON.stringify(iotCredentials));
 
 var iotAppConfig = {
     "org" : iotCredentials.credentials.org,
-    "id" : iotCredentials.credentials.iotCredentialsIdentifier,
+    // ID has to be unique, https://docs.internetofthings.ibmcloud.com/applications/mqtt.html#/mqtt-client-identifier#mqtt-client-identifier
+    "id" : Date.now().toString(),
     "auth-method" : "apikey",
     "auth-key" : iotCredentials.credentials.apiKey,
     "auth-token" : iotCredentials.credentials.apiToken
